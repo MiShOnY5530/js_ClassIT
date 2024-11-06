@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .example-class {
+            color: blue;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="myId">This is an element with id="myId"</div>
+<p class="example-class">This is a paragraph with class="example-class"</p>
+<span>This is a span element</span>
+<script>
+    function myQuerySelector(selector) {
+        if (selector.startsWith('#')) {
+            return document.getElementById(selector.slice(1));
+        } else if (selector.startsWith('.')) {
+            return document.getElementsByClassName(selector.slice(1));
+        } else {
+            return document.getElementsByTagName(selector);
+        }
+    }
+
+    const elementById = myQuerySelector('#myId');
+    console.log(elementById);
+
+    const elementsByClass = myQuerySelector('.example-class');
+    console.log(elementsByClass);
+
+    const elementsByTag = myQuerySelector('span');
+    console.log(elementsByTag);
+</script>
+</body>
+</html>

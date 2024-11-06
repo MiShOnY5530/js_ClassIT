@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка файлов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #preview {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .file-preview {
+            border: 1px solid #ddd;
+            padding: 10px;
+            max-width: 150px;
+            text-align: center;
+        }
+        .file-preview img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Загрузка файлов</h1>
+<form id="upload-form">
+    <label for="file-input">Выберите файлы:</label>
+    <input type="file" id="file-input" multiple>
+    <button type="button" onclick="handleFiles()">Загрузить</button>
+</form>
+
+<div id="preview"></div>
+
+<script>
+function handleFiles() {
+    const files = document.getElementById('file-input').files;
+    const previewContainer = document.getElementById('preview');
+    previewContainer.innerHTML = ''; // Очистка контейнера перед отображением новых файлов
+
+    Array.from(files).forEach(file => {
+        const fileReader = new FileReader();
+        
+        fileReader.onload = function(event) {
+            const div = document.createElement('div');
+            div.classList.add('file-preview');
+
+            if (file.type.startsWith('image/')) {
+                const img = document.createElement('img');
+                img.src = event.target.result;
+                div.appendChild(img);
+            } else if (file.type === 'text/plain') {
+                const text = document.createElement('p');
+                text.textContent = event.target.result;
+                div.appendChild(text);
+            } else {
+                const unsupported = document.createElement('p');
+                unsupported.textContent = 'Тип файла не поддерживается';
+                div.appendChild(unsupported);
+            }
+
+            previewContainer.appendChild(div);
+        };
+
+        if (file.type.startsWith('image/') || file.type === 'text/plain') {
+            fileReader.readAsDataURL(file); // Для изображений
+            if (file.type === 'text/plain') {
+                fileReader.readAsText(file); // Для текстовых файлов
+            }
+        }
+    });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+.loading-container {
+    width: 200px;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 5px;
+    margin: 20px auto;
+}
+
+.loading-bar {
+    border-radius: 10px;
+    height: 100%;
+    background-color: #007bff;
+    transition: width 0.5s ease;
+}
+
+.loading-percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    line-height: 20px;
+}

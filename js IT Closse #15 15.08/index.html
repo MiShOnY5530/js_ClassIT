@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пошук з автозаповненням</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .autocomplete-container {
+            position: relative;
+            display: inline-block;
+            width: 300px;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .suggestions {
+            border: 1px solid #ccc;
+            border-top: none;
+            max-height: 150px;
+            overflow-y: auto;
+            position: absolute;
+            width: 100%;
+            background-color: white;
+            z-index: 1000;
+        }
+        .suggestion-item {
+            padding: 8px;
+            cursor: pointer;
+        }
+        .suggestion-item:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="autocomplete-container">
+        <input type="text" id="searchInput" placeholder="Почніть вводити текст...">
+        <div id="suggestions" class="suggestions"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
